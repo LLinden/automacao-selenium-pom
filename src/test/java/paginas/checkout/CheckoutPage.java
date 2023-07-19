@@ -38,6 +38,6 @@ public class CheckoutPage {
         WebElement botaoHome = driver.findElement(By.id(CheckoutElements.BOTAO_HOME.getId()));
         botaoHome.click();
 
-        assertThat(driver.getCurrentUrl()).isEqualTo(dados.getHome());
+        assertThat(driver.getCurrentUrl()).isEqualTo(dados.getInventory());
     }
 }

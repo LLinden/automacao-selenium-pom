@@ -3,6 +3,7 @@ package execucao;
 import config.BaseAbstrataTeste;
 import fixtures.Dados;
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,6 +25,7 @@ public class CompraProduto extends BaseAbstrataTeste {
 
     @Test
     @Description("Fluxo de compra de um produto com sucesso")
+    @Step("Teste")
     void compraProduto() {
         Dados dados = Dados.builder().build();
         ProdutoPage.adicionaAoCarrinho(getDriver());
