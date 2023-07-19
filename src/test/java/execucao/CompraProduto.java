@@ -5,14 +5,15 @@ import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import paginas.home.HomePage;
+import paginas.carrinho.CarrinhoPage;
+import paginas.login.LoginPage;
 import paginas.produto.ProdutoPage;
 
 public class CompraProduto extends BaseAbstrataTeste {
 
     @BeforeMethod
     void visitaPagina() {
-        HomePage.acessarPaginaInicial(getDriver());
+        LoginPage.executarLogin(getDriver());
     }
 
     @AfterMethod
@@ -21,9 +22,9 @@ public class CompraProduto extends BaseAbstrataTeste {
     @Test
     @Description("Fluxo de compra de um produto com sucesso")
     void compraProduto() {
-        HomePage.selecionaProduto(getDriver());
         ProdutoPage.adicionaAoCarrinho(getDriver());
         ProdutoPage.irParaCarrinho(getDriver());
+        CarrinhoPage.confirmaCarrinho(getDriver());
     }
 }
 

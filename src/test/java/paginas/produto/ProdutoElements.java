@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ProdutoElements {
-    BOTAO_ADD_CART("/html/body/div[5]/div/div[2]/div[2]/div/a"),
-    LINK_CARRINHO("cartur");
+    BOTAO_ADD_CART("add-to-cart-sauce-labs-backpack"),
+    LINK_CARRINHO("shopping_cart_container");
 
     public final String id;
 }
