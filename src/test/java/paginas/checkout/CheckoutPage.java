@@ -12,5 +12,13 @@ public class CheckoutPage {
 
         WebElement sobrenome = driver.findElement(By.id(CheckoutElements.INPUT_SOBRENOME.getId()));
         sobrenome.sendKeys(dados.getSobrenome());
+
+        WebElement cep = driver.findElement(By.id(CheckoutElements.INPUT_CEP.getId()));
+        cep.sendKeys(dados.getCep());
+
+        WebElement continuar = driver.findElement(By.id(CheckoutElements.BOTAO_CONTINUAR.getId()));
+        continuar.click();
+
+
     }
 }

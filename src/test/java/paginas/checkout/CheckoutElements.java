@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum CheckoutElements {
     INPUT_NOME("first-name"),
     INPUT_SOBRENOME("last-name"),
-    INPUT_CEP("postal-code");
+    INPUT_CEP("postal-code"),
+    BOTAO_CONTINUAR("continue");
 
     public final String id;
 }
