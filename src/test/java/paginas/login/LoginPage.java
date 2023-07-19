@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.*;
 
 
 public class LoginPage {
+
+    @Step("Acessa página e realiza login")
     public static void executarLogin(WebDriver driver, Dados dados) {
         driver.get(dados.getHome());
 
