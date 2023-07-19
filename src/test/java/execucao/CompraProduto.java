@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import paginas.home.HomePage;
+import paginas.produto.ProdutoPage;
 
 public class CompraProduto extends BaseAbstrataTeste {
 
@@ -21,6 +22,8 @@ public class CompraProduto extends BaseAbstrataTeste {
     @Description("Fluxo de compra de um produto com sucesso")
     void compraProduto() {
         HomePage.selecionaProduto(getDriver());
+        ProdutoPage.adicionaAoCarrinho(getDriver());
+        ProdutoPage.irParaCarrinho(getDriver());
     }
 }
 
