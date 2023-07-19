@@ -4,10 +4,12 @@ import fixtures.Dados;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static org.assertj.core.api.Assertions.*;
+
 
 public class LoginPage {
     public static void executarLogin(WebDriver driver, Dados dados) {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(dados.getHome());
 
         WebElement username = driver.findElement(By.id(LoginElements.INPUT_USERNAME.getId()));
         username.sendKeys(dados.getUser());
@@ -17,5 +19,7 @@ public class LoginPage {
 
         WebElement botaoLogin = driver.findElement(By.id(LoginElements.BOTAO_LOGIN.getId()));
         botaoLogin.click();
+
+        assertThat(driver.getCurrentUrl()).isEqualTo(dados.getInventory());
     }
 }

@@ -1,11 +1,13 @@
 package execucao;
 
 import config.BaseAbstrataTeste;
+import fixtures.Dados;
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import paginas.carrinho.CarrinhoPage;
+import paginas.checkout.CheckoutPage;
 import paginas.login.LoginPage;
 import paginas.produto.ProdutoPage;
 
@@ -13,7 +15,8 @@ public class CompraProduto extends BaseAbstrataTeste {
 
     @BeforeMethod
     void visitaPagina() {
-        LoginPage.executarLogin(getDriver());
+        Dados dados = Dados.builder().build();
+        LoginPage.executarLogin(getDriver(), dados);
     }
 
     @AfterMethod
@@ -22,9 +25,13 @@ public class CompraProduto extends BaseAbstrataTeste {
     @Test
     @Description("Fluxo de compra de um produto com sucesso")
     void compraProduto() {
+        Dados dados = Dados.builder().build();
         ProdutoPage.adicionaAoCarrinho(getDriver());
-        ProdutoPage.irParaCarrinho(getDriver());
+        ProdutoPage.irParaCarrinho(getDriver(), dados);
         CarrinhoPage.confirmaCarrinho(getDriver());
+        CheckoutPage.checkout(getDriver(), dados);
+        CheckoutPage.checkoutOverview(getDriver(), dados);
+        CheckoutPage.checkoutComplete(getDriver(), dados);
     }
 }
 

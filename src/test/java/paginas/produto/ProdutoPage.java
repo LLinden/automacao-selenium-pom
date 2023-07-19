@@ -1,10 +1,11 @@
 package paginas.produto;
 
+import fixtures.Dados;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static sun.jvm.hotspot.runtime.Thread.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class ProdutoPage {
 
@@ -13,8 +14,10 @@ public class ProdutoPage {
         adicionaCarrinho.click();
     }
 
-    public static void irParaCarrinho(WebDriver driver) {
+    public static void irParaCarrinho(WebDriver driver, Dados dados) {
         WebElement linkCarrinho = driver.findElement(By.id(ProdutoElements.LINK_CARRINHO.getId()));
         linkCarrinho.click();
+
+        assertThat(driver.getCurrentUrl()).isEqualTo(dados.getCarrinho());
     }
 }
