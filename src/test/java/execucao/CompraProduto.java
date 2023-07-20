@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import paginas.carrinho.CarrinhoPage;
 import paginas.checkout.CheckoutPage;
+import paginas.checkoutComplete.CheckoutCompletePage;
+import paginas.checkoutOverview.CheckoutOverviewPage;
 import paginas.login.LoginPage;
 import paginas.produto.ProdutoPage;
 
@@ -28,9 +30,9 @@ public class CompraProduto extends BaseAbstrataTeste {
         produtoPage.adicionaAoCarrinho();
         CarrinhoPage carrinhoPage = produtoPage.irParaCarrinho(dados);
         CheckoutPage checkoutPage = carrinhoPage.confirmaCarrinho();
-        checkoutPage.checkout(dados);
-        checkoutPage.checkoutOverview(dados);
-        checkoutPage.checkoutComplete(dados);
+        CheckoutOverviewPage checkoutOverviewPage = checkoutPage.checkout(dados);
+        CheckoutCompletePage checkoutCompletePage = checkoutOverviewPage.checkoutOverview(dados);
+        checkoutCompletePage.checkoutComplete(dados);
         //assert
     }
 }
