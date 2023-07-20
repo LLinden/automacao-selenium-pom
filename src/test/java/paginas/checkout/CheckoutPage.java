@@ -16,20 +16,40 @@ public class CheckoutPage {
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
     }
-    @Step("Preenche formulário de checkout")
-    public CheckoutOverviewPage checkout(Dados dados) {
-        WebElement nome = driver.findElement(By.id(CheckoutElements.INPUT_NOME.getId()));
-        nome.sendKeys(dados.getNome());
 
-        WebElement sobrenome = driver.findElement(By.id(CheckoutElements.INPUT_SOBRENOME.getId()));
-        sobrenome.sendKeys(dados.getSobrenome());
+    @Step("Preenche nome")
+    public CheckoutPage preencheNome(String nome) {
+        WebElement inputNome = driver.findElement(By.id(CheckoutElements.INPUT_NOME.getId()));
+        inputNome.sendKeys(nome);
 
-        WebElement cep = driver.findElement(By.id(CheckoutElements.INPUT_CEP.getId()));
-        cep.sendKeys(dados.getCep());
+        return this;
+    };
+    @Step("Preenche sobrenome")
+    public CheckoutPage preencheSobrenome(String sobrenome) {
+        WebElement inputSobrenome = driver.findElement(By.id(CheckoutElements.INPUT_SOBRENOME.getId()));
+        inputSobrenome.sendKeys(sobrenome);
 
+        return this;
+    };
+    @Step("Preenche cep")
+    public CheckoutPage preencheCep(String cep) {
+        WebElement inputCep = driver.findElement(By.id(CheckoutElements.INPUT_CEP.getId()));
+        inputCep.sendKeys(cep);
+
+        return this;
+    };
+    @Step("Submete pedido")
+    public CheckoutOverviewPage submetePedido() {
         WebElement continuar = driver.findElement(By.id(CheckoutElements.BOTAO_CONTINUAR.getId()));
         continuar.click();
 
         return new CheckoutOverviewPage(driver);
+    };
+    @Step("Preenche formulário de checkout")
+    public CheckoutOverviewPage checkout(Dados dados) {
+        preencheNome(dados.getNome());
+        preencheSobrenome(dados.getSobrenome());
+        preencheCep(dados.getCep());
+        return submetePedido();
     }
 }
