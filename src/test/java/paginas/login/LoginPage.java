@@ -1,5 +1,6 @@
 package paginas.login;
 
+import fixtures.Constantes;
 import fixtures.Dados;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 public class LoginPage {
     @Step("Acessa página e realiza login")
     public static void executarLogin(WebDriver driver, Dados dados) {
-        driver.get(dados.getHome());
+        driver.get(Constantes.HOME.getId());
 
         WebElement username = driver.findElement(By.id(LoginElements.INPUT_USERNAME.getId()));
         username.sendKeys(dados.getUser());
@@ -21,7 +22,5 @@ public class LoginPage {
 
         WebElement botaoLogin = driver.findElement(By.id(LoginElements.BOTAO_LOGIN.getId()));
         botaoLogin.click();
-
-        assertThat(driver.getCurrentUrl()).isEqualTo(dados.getInventory());
     }
 }

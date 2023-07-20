@@ -24,12 +24,14 @@ public class CompraProduto extends BaseAbstrataTeste {
     @Test
     @Description("Fluxo de compra de um produto com sucesso")
     void compraProduto() {
-        ProdutoPage.adicionaAoCarrinho(getDriver());
-        ProdutoPage.irParaCarrinho(getDriver(), dados);
-        CarrinhoPage.confirmaCarrinho(getDriver());
-        CheckoutPage.checkout(getDriver(), dados);
-        CheckoutPage.checkoutOverview(getDriver(), dados);
-        CheckoutPage.checkoutComplete(getDriver(), dados);
+        ProdutoPage produtoPage = new ProdutoPage(getDriver());
+        produtoPage.adicionaAoCarrinho();
+        CarrinhoPage carrinhoPage = produtoPage.irParaCarrinho(dados);
+        CheckoutPage checkoutPage = carrinhoPage.confirmaCarrinho();
+        checkoutPage.checkout(dados);
+        checkoutPage.checkoutOverview(dados);
+        checkoutPage.checkoutComplete(dados);
+        //assert
     }
 }
 
