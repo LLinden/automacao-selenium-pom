@@ -16,12 +16,14 @@ public class CheckoutCompletePage {
         this.driver = driver;
         assertThat(driver.getCurrentUrl()).isEqualTo(Constantes.CHECKOUT_COMPLETE.getId());
     }
-
-    @Step("Concluí checkout")
-    public ProdutoPage checkoutComplete(Dados dados) {
+    @Step("Salva texto de conclusão da venda")
+    public String getTextoConclusao() {
         String textoConclusao = driver.findElement(By.className(CheckoutCompleteElements.TEXTO_CONCLUSAO.getId())).getText();
-        //assertThat(textoConclusao).contains("Your order has been dispatched");
 
+        return textoConclusao;
+    };
+    @Step("Concluí checkout")
+    public ProdutoPage checkoutComplete() {
         WebElement botaoHome = driver.findElement(By.id(CheckoutCompleteElements.BOTAO_HOME.getId()));
         botaoHome.click();
 

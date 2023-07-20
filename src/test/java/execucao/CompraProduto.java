@@ -12,6 +12,7 @@ import paginas.checkoutComplete.CheckoutCompletePage;
 import paginas.checkoutOverview.CheckoutOverviewPage;
 import paginas.login.LoginPage;
 import paginas.produto.ProdutoPage;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CompraProduto extends BaseAbstrataTeste {
     Dados dados = Dados.builder().build();
@@ -32,8 +33,9 @@ public class CompraProduto extends BaseAbstrataTeste {
         CheckoutPage checkoutPage = carrinhoPage.confirmaCarrinho();
         CheckoutOverviewPage checkoutOverviewPage = checkoutPage.checkout(dados);
         CheckoutCompletePage checkoutCompletePage = checkoutOverviewPage.checkoutOverview(dados);
-        checkoutCompletePage.checkoutComplete(dados);
-        //assert
+        String textoConclusaoVenda = checkoutCompletePage.getTextoConclusao();
+        assertThat(textoConclusaoVenda).contains("Your order has been dispatched");
+        checkoutCompletePage.checkoutComplete();
     }
 }
 
