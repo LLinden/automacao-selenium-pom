@@ -21,8 +21,8 @@ public class CompraProduto extends BaseAbstrataTeste {
         LoginPage.executarLogin(getDriver(), dados);
     }
 
-    //@AfterMethod
-    //void fechaNavegador() {getDriver().quit();}
+    @AfterMethod
+    void fechaNavegador() {getDriver().quit();}
 
     @Test
     @Description("Fluxo de compra de um produto com sucesso")
